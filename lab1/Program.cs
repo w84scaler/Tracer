@@ -10,9 +10,21 @@ namespace lab1
         static void Main(string[] args)
         {
             TracerClass tracer = new TracerClass();
+            
             Foo _foo = new Foo(tracer);
+            Bar _bar = new Bar(tracer);
+            AnotherClass _anotherObject = new AnotherClass(tracer);
+
             _foo.MyMethod();
             _foo.MyMethod();
+
+            Thread secondThread = new Thread(new ThreadStart(_anotherObject.AnotherMethod));
+            secondThread.Start();
+
+            Thread thirdThread = new Thread(new ThreadStart(_bar.InnerMethod));
+            thirdThread.Start();
+
+            Thread.Sleep(1000);
 
             TraceResult traceResult = tracer.GetTraceResult();
         }
@@ -32,7 +44,7 @@ namespace lab1
         {
             _tracer.StartTrace();
             Console.WriteLine("Hello");
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             _bar.InnerMethod();
             _tracer.StopTrace();
         }
@@ -51,8 +63,35 @@ namespace lab1
         {
             _tracer.StartTrace();
             Console.WriteLine("World!");
-            Thread.Sleep(100);
+            
+            Thread.Sleep(50);
             _tracer.StopTrace();
+        }
+    }
+
+    public class AnotherClass
+    {
+        private ITracer _tracer;
+        private Bar _bar;
+        private int n = 3;
+
+        internal AnotherClass(ITracer tracer)
+        {
+            _tracer = tracer;
+            _bar = new Bar(_tracer);
+        }
+
+        public void AnotherMethod()
+        {
+            _tracer.StartTrace();
+            while (n != 0)
+            {
+                n--;
+                AnotherMethod();
+                _bar.InnerMethod();
+            }
+            Thread.Sleep(50);
+            _tracer.StartTrace();
         }
     }
 }

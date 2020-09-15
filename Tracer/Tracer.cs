@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Tracer
 {
     public class TracerClass : ITracer
     {
         private TraceResult traceResult = new TraceResult();
-        private Stack<(Methods, Stopwatch)> stack = new Stack<(Methods, Stopwatch)>();
+        private Dictionary<int, Stack<(Methods, Stopwatch)>> stack = new Dictionary<int, Stack<(Methods, Stopwatch)>>();
         public TraceResult GetTraceResult()
         {
             return traceResult;
