@@ -7,9 +7,8 @@ namespace Tracer
 {
     public class TracerClass : ITracer
     {
-        private Stopwatch time = new Stopwatch();
         private TraceResult traceResult = new TraceResult();
-        private Stack<Methods> stack = new Stack<Methods>();
+        private Stack<(Methods, Stopwatch)> stack = new Stack<(Methods, Stopwatch)>();
         public TraceResult GetTraceResult()
         {
             return traceResult;
@@ -17,38 +16,37 @@ namespace Tracer
 
         public void StartTrace()
         {
-            time.Reset();
-            time.Start();
-            Methods _methods = new Methods();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Methods method = new Methods();
 
             StackFrame frame = new StackFrame(1);
-            var method = frame.GetMethod();
-            _methods.ClassName = method.DeclaringType.ToString();
-            _methods.Name = method.Name;
+            var frameMethod = frame.GetMethod();
+            method.ClassName = frameMethod.DeclaringType.ToString();
+            method.Name = frameMethod.Name;
 
             if (traceResult.Threads == null)
             {
                 traceResult.Threads = new List<Threads>();
                 traceResult.Threads.Add(new Threads());
             }
-
-            stack.Push(_methods);
+            stack.Push((method, stopwatch));
         }
 
         public void StopTrace()
         {
-            time.Stop();
-            Methods ThisMethod = stack.Pop();
-            ThisMethod.Time = time.ElapsedMilliseconds;
+            
+            (Methods ThisMethod, Stopwatch stopwatch) = stack.Pop();
+            ThisMethod.Time = stopwatch.ElapsedMilliseconds;
             if (stack.Count != 0)
             {
-                Methods PreMethod = stack.Pop();
+                (Methods PreMethod, Stopwatch preStopwatch) = stack.Pop(); 
                 if (PreMethod.Methods == null)
                 {
                     PreMethod.Methods = new List<Methods>();
                 }
                 PreMethod.Methods.Add(ThisMethod);
-                stack.Push(PreMethod);
+                stack.Push((PreMethod, preStopwatch));
             }
             else
             {
