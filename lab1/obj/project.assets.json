@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Tracer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Tracer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Tracer.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Tracer/1.0.0": {
+      "type": "project",
+      "path": "../Tracer/Tracer.csproj",
+      "msbuildProject": "../Tracer/Tracer.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "Tracer >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\w84scaler\\.nuget\\packages\\": {}
@@ -32,7 +51,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\WORK\\3 курс\\5 сем\\СПП\\lab1\\Tracer\\Tracer.csproj": {
+              "projectPath": "D:\\WORK\\3 курс\\5 сем\\СПП\\lab1\\Tracer\\Tracer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

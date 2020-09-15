@@ -1,0 +1,16 @@
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\lab1.exe
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\lab1.deps.json
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\lab1.runtimeconfig.json
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\lab1.runtimeconfig.dev.json
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\lab1.dll
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\lab1.pdb
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\Tracer.dll
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\bin\Debug\netcoreapp3.1\Tracer.pdb
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.csprojAssemblyReference.cache
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.AssemblyInfoInputs.cache
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.AssemblyInfo.cs
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.csproj.CoreCompileInputs.cache
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.csproj.CopyComplete
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.dll
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.pdb
+D:\WORK\3 курс\5 сем\СПП\lab1\lab1\obj\Debug\netcoreapp3.1\lab1.genruntimeconfig.cache

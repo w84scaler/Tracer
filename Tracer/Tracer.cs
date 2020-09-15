@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace Tracer
 {
-    public class Tracer : ITracer
+    public class TracerClass : ITracer
     {
+        private Stopwatch time = new Stopwatch();
+        private TraceResult traceResult = new TraceResult();
         public TraceResult GetTraceResult()
         {
-            throw new NotImplementedException();
+            traceResult.Threads = new List<Threads>();
+            traceResult.Threads.Add(new Threads());
+            traceResult.Threads[0].Time = time.ElapsedMilliseconds;
+
+            return traceResult;
         }
 
         public void StartTrace()
         {
-            throw new NotImplementedException();
+            time.Reset();
+            time.Start();
         }
 
         public void StopTrace()
         {
-            throw new NotImplementedException();
+            time.Stop();
         }
     }
 }

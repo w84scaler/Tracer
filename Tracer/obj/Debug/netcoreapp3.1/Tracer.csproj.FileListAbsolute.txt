@@ -1,0 +1,9 @@
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\bin\Debug\netcoreapp3.1\Tracer.deps.json
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\bin\Debug\netcoreapp3.1\Tracer.dll
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\bin\Debug\netcoreapp3.1\Tracer.pdb
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\obj\Debug\netcoreapp3.1\Tracer.csprojAssemblyReference.cache
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\obj\Debug\netcoreapp3.1\Tracer.AssemblyInfoInputs.cache
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\obj\Debug\netcoreapp3.1\Tracer.AssemblyInfo.cs
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\obj\Debug\netcoreapp3.1\Tracer.csproj.CoreCompileInputs.cache
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\obj\Debug\netcoreapp3.1\Tracer.dll
+D:\WORK\3 курс\5 сем\СПП\lab1\Tracer\obj\Debug\netcoreapp3.1\Tracer.pdb
