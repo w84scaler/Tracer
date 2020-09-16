@@ -10,7 +10,7 @@ namespace Tracer
     }
     public class Item
     {
-        public long Time;
+        public long Time = 0;
         public List<Methods> Methods;
     }
     public class Threads : Item

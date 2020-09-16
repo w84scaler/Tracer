@@ -66,6 +66,7 @@ namespace Tracer
                     traceResult.Threads[ThreadIndex].Methods = new List<Methods>();
                 }
                 traceResult.Threads[ThreadIndex].Methods.Add(ThisMethod);
+                traceResult.Threads[ThreadIndex].Time += ThisMethod.Time;
             }    
         }
     }
