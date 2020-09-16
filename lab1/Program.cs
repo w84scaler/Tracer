@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Tracer;
 
@@ -15,16 +16,16 @@ namespace lab1
             Bar _bar = new Bar(tracer);
             AnotherClass _anotherObject = new AnotherClass(tracer);
 
-            _foo.MyMethod();
-            _foo.MyMethod();
+            _anotherObject.AnotherMethod();
 
-            Thread secondThread = new Thread(new ThreadStart(_anotherObject.AnotherMethod));
+            Thread secondThread = new Thread(new ThreadStart(_foo.MyMethod));
             secondThread.Start();
 
             Thread thirdThread = new Thread(new ThreadStart(_bar.InnerMethod));
             thirdThread.Start();
 
-            Thread.Sleep(1000);
+            secondThread.Join();
+            thirdThread.Join();
 
             TraceResult traceResult = tracer.GetTraceResult();
         }
@@ -63,6 +64,8 @@ namespace lab1
         {
             _tracer.StartTrace();
             Console.WriteLine("World!");
+
+            
             
             Thread.Sleep(50);
             _tracer.StopTrace();
@@ -88,10 +91,11 @@ namespace lab1
             {
                 n--;
                 AnotherMethod();
+                Console.WriteLine("ya rabotayu...");
                 _bar.InnerMethod();
             }
             Thread.Sleep(50);
-            _tracer.StartTrace();
+            _tracer.StopTrace();
         }
     }
 }
