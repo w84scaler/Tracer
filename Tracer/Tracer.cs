@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Collections.Concurrent;
 using System.Threading;
 
 namespace Tracer
@@ -9,7 +10,7 @@ namespace Tracer
     public class TracerClass : ITracer
     {
         private TraceResult traceResult = new TraceResult();
-        private Dictionary<int, Stack<(Methods, Stopwatch)>> threadDictionary = new Dictionary<int, Stack<(Methods, Stopwatch)>>();
+        private ConcurrentDictionary<int, Stack<(Methods, Stopwatch)>> threadDictionary = new ConcurrentDictionary<int, Stack<(Methods, Stopwatch)>>();
         public TraceResult GetTraceResult()
         {
             return traceResult;
@@ -33,10 +34,9 @@ namespace Tracer
 
             int ThreadId = Thread.CurrentThread.ManagedThreadId;
 
-            if (!threadDictionary.ContainsKey(ThreadId))
+            if (threadDictionary.TryAdd(ThreadId, new Stack<(Methods, Stopwatch)>()))
             {
                 traceResult.Threads.Add(new Threads { id = ThreadId });
-                threadDictionary.Add(ThreadId, new Stack<(Methods, Stopwatch)>());
             }
 
             threadDictionary[ThreadId].Push((method, stopwatch));
