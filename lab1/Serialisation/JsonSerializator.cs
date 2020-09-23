@@ -2,7 +2,7 @@
 
 namespace lab1.Serialisation
 {
-    class JsonSerializator : ISerializator
+    class JsonSerializer : ISerializer
     {
         private JsonSerializerSettings JsonSettings = new JsonSerializerSettings
         {

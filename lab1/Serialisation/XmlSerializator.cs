@@ -1,21 +1,24 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
+using System;
 
 namespace lab1.Serialisation
 {
-    class XmlSerializator : ISerializator
+    class myXmlSerializer : ISerializer
     {
-        string ISerializator.Serialize(object obj)
+        private XmlSerializerNamespaces emptyNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+        public string Serialize(object obj)
         {
-            string xml;
             XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
             using (StringWriter stringWriter = new StringWriter())
             {
-                    xmlSerializer.Serialize(stringWriter, obj);
-                    xml = stringWriter.ToString();
+                using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter))
+                {
+                    xmlSerializer.Serialize(stringWriter, obj, emptyNamespaces);
+                    return stringWriter.ToString();
+                }
             }
-            return xml;
         }
     }
 }

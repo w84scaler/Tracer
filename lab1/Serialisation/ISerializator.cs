@@ -1,6 +1,6 @@
 ﻿namespace lab1.Serialisation
 {
-    interface ISerializator
+    interface ISerializer
     {
         public string Serialize(object obj);
     }

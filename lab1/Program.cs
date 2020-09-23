@@ -30,10 +30,10 @@ namespace lab1
 
             TraceResult traceResult = tracer.GetTraceResult();
 
-            ISerializator serializatorJson = new JsonSerializator();
+            ISerializer serializatorJson = new JsonSerializer();
             Console.WriteLine(serializatorJson.Serialize(traceResult));
 
-            ISerializator serializatorXml = new XmlSerializator();
+            ISerializer serializatorXml = new myXmlSerializer();
             Console.WriteLine(serializatorXml.Serialize(traceResult));
         }
     }
