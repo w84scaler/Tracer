@@ -24,7 +24,7 @@ namespace Tracer
 
             StackFrame frame = new StackFrame(1);
             var frameMethod = frame.GetMethod();
-            method.ClassName = frameMethod.DeclaringType.ToString();
+            method.ClassName = frameMethod.DeclaringType.Name;
             method.Name = frameMethod.Name;
 
             if (traceResult.Threads == null)

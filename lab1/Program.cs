@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Tracer;
+using lab1.Serialisation;
 
 namespace lab1
 {
@@ -11,7 +12,7 @@ namespace lab1
         static void Main(string[] args)
         {
             TracerClass tracer = new TracerClass();
-            
+
             Foo _foo = new Foo(tracer);
             Bar _bar = new Bar(tracer);
             AnotherClass _anotherObject = new AnotherClass(tracer);
@@ -28,6 +29,12 @@ namespace lab1
             thirdThread.Join();
 
             TraceResult traceResult = tracer.GetTraceResult();
+
+            ISerializator serializatorJson = new JsonSerializator();
+            Console.WriteLine(serializatorJson.Serialize(traceResult));
+
+            ISerializator serializatorXml = new XmlSerializator();
+            Console.WriteLine(serializatorXml.Serialize(traceResult));
         }
     }
 
@@ -44,7 +51,6 @@ namespace lab1
         public void MyMethod()
         {
             _tracer.StartTrace();
-            Console.WriteLine("Hello");
             Thread.Sleep(50);
             _bar.InnerMethod();
             _tracer.StopTrace();
@@ -63,10 +69,6 @@ namespace lab1
         public void InnerMethod()
         {
             _tracer.StartTrace();
-            Console.WriteLine("World!");
-
-            
-            
             Thread.Sleep(50);
             _tracer.StopTrace();
         }
@@ -91,7 +93,6 @@ namespace lab1
             {
                 n--;
                 AnotherMethod();
-                Console.WriteLine("ya rabotayu...");
                 _bar.InnerMethod();
             }
             Thread.Sleep(50);
