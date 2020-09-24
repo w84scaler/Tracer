@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace lab1.Serialisation
+namespace lab1.Serialization
 {
     class JsonSerializer : ISerializer
     {

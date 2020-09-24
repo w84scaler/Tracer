@@ -19,10 +19,11 @@ namespace Tracer
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            Methods method = new Methods();
 
             StackFrame frame = new StackFrame(1);
             MethodBase frameMethod = frame.GetMethod();
+
+            Methods method = new Methods();
             method.ClassName = frameMethod.DeclaringType.Name;
             method.Name = frameMethod.Name;
 
@@ -44,9 +45,9 @@ namespace Tracer
         public void StopTrace()
         {
             int ThreadId = Thread.CurrentThread.ManagedThreadId;
-
             (Methods ThisMethod, Stopwatch stopwatch) = threadDictionary[ThreadId].Pop();
             ThisMethod.Time = stopwatch.ElapsedMilliseconds;
+
             if (threadDictionary[ThreadId].Count != 0)
             {
                 (Methods PreMethod, Stopwatch preStopwatch) = threadDictionary[ThreadId].Pop();
@@ -66,7 +67,7 @@ namespace Tracer
                 }
                 traceResult.Threads[ThreadIndex].Methods.Add(ThisMethod);
                 traceResult.Threads[ThreadIndex].Time += ThisMethod.Time;
-            }    
+            }
         }
     }
 }

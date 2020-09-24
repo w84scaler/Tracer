@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace lab1.Serialisation
+namespace lab1.Serialization
 {
     class myXmlSerializer : ISerializer
     {

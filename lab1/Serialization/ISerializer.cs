@@ -1,4 +1,4 @@
-﻿namespace lab1.Serialisation
+﻿namespace lab1.Serialization
 {
     interface ISerializer
     {
