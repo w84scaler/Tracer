@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
-using System;
 
 namespace lab1.Serialisation
 {

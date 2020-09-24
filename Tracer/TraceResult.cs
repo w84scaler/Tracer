@@ -13,7 +13,7 @@ namespace Tracer
     public class Item
     {
         [XmlAttribute("time")]
-        public long Time = 0;
+        public long Time;
         [XmlElement(ElementName = "method")]
         public List<Methods> Methods;
     }

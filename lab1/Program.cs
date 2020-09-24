@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Tracer;
 using lab1.Serialisation;
+using lab1.Writing;
 
 namespace lab1
 {
@@ -30,11 +29,19 @@ namespace lab1
 
             TraceResult traceResult = tracer.GetTraceResult();
 
-            ISerializer serializatorJson = new JsonSerializer();
-            Console.WriteLine(serializatorJson.Serialize(traceResult));
+            ISerializer serializerJson = new JsonSerializer();
+            ISerializer serializerXml = new myXmlSerializer();
+            IWriter consoleWriter = new ConsoleWriter();
+            IWriter fileWriter = new FileWriter(Environment.CurrentDirectory + "\\" + "FileName" + "." + "txt");
 
-            ISerializer serializatorXml = new myXmlSerializer();
-            Console.WriteLine(serializatorXml.Serialize(traceResult));
+            string json = serializerJson.Serialize(traceResult);
+            string xml = serializerXml.Serialize(traceResult);
+
+            consoleWriter.Write(json);
+            consoleWriter.Write(xml);
+
+            fileWriter.Write(json);
+            //fileWriter.Write(xml);
         }
     }
 

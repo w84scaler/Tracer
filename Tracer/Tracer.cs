@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Collections.Concurrent;
 using System.Threading;
+using System.Reflection;
 
 namespace Tracer
 {
@@ -23,7 +22,7 @@ namespace Tracer
             Methods method = new Methods();
 
             StackFrame frame = new StackFrame(1);
-            var frameMethod = frame.GetMethod();
+            MethodBase frameMethod = frame.GetMethod();
             method.ClassName = frameMethod.DeclaringType.Name;
             method.Name = frameMethod.Name;
 
