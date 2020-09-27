@@ -62,6 +62,8 @@ namespace UnitTests
             stopwatch.Start();
             tracer.StartTrace();
 
+            Thread.Sleep(1000);
+
             stopwatch.Stop();
             tracer.StopTrace();
 
