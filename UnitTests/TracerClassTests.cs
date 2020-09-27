@@ -1,14 +1,18 @@
-﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
 using System.Threading;
+using System;
 using Tracer;
-using lab1.Serialization;
-using lab1.Writing;
 
-namespace lab1
+namespace UnitTests
 {
-    class Program
+    [TestClass]
+    public class TracerClassTests
     {
-        static void Main(string[] args)
+        TraceResult traceResult;
+
+        [TestInitialize]
+        public void Setup()
         {
             TracerClass tracer = new TracerClass();
 
@@ -27,24 +31,43 @@ namespace lab1
             secondThread.Join();
             thirdThread.Join();
 
-            TraceResult traceResult = tracer.GetTraceResult();
+            traceResult = tracer.GetTraceResult();
+        }
 
-            ISerializer serializerJson = new JsonSerializer();
-            ISerializer serializerXml = new myXmlSerializer();
-            IWriter consoleWriter = new ConsoleWriter();
-            IWriter fileWriter = new FileWriter(Environment.CurrentDirectory + "\\" + "FileName" + "." + "txt");
+        [TestMethod]
+        public void Test_ThreadCount_3()
+        {
+            Assert.AreEqual(3, traceResult.Threads.Count);
+        }
 
-            string json = serializerJson.Serialize(traceResult);
-            string xml = serializerXml.Serialize(traceResult);
+        [TestMethod]
+        public void Test_SameLevelMethods_2()
+        {
+            Assert.AreEqual(2, traceResult.Threads[0].Methods[0].Methods.Count);
+        }
 
-            consoleWriter.Write(json);
-            consoleWriter.Write(xml);
+        [TestMethod]
+        public void Test_MethodInfo_Bar_InnerMethod()
+        {
+            Assert.AreEqual("InnerMethod", traceResult.Threads[0].Methods[0].Methods[1].Name, "Wrong method name");
+            Assert.AreEqual("Bar", traceResult.Threads[0].Methods[0].Methods[1].ClassName, "Wrong class name");
+        }
 
-            fileWriter.Write(json);
-            //fileWriter.Write(xml);
+        [TestMethod]
+        public void Test_ExecutionTime()
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            TracerClass tracer = new TracerClass();
+
+            stopwatch.Start();
+            tracer.StartTrace();
+
+            stopwatch.Stop();
+            tracer.StopTrace();
+
+            Assert.IsTrue(Math.Abs(stopwatch.ElapsedMilliseconds - tracer.GetTraceResult().Threads[0].Time) < 10);
         }
     }
-
     public class Foo
     {
         private Bar _bar;

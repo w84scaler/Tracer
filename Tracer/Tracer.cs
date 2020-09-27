@@ -46,6 +46,7 @@ namespace Tracer
         {
             int ThreadId = Thread.CurrentThread.ManagedThreadId;
             (Methods ThisMethod, Stopwatch stopwatch) = threadDictionary[ThreadId].Pop();
+            stopwatch.Stop();
             ThisMethod.Time = stopwatch.ElapsedMilliseconds;
 
             if (threadDictionary[ThreadId].Count != 0)
