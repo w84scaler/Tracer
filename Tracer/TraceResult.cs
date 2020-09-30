@@ -8,7 +8,7 @@ namespace Tracer
     public class TraceResult
     {
         [XmlElement(ElementName = "thread")]
-        public List<Threads> Threads;
+        public List<Threads> Threads = new List<Threads>();
     }
     public class Item
     {

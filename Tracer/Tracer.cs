@@ -27,11 +27,6 @@ namespace Tracer
             method.ClassName = frameMethod.DeclaringType.Name;
             method.Name = frameMethod.Name;
 
-            if (traceResult.Threads == null)
-            {
-                traceResult.Threads = new List<Threads>();
-            }
-
             int ThreadId = Thread.CurrentThread.ManagedThreadId;
 
             if (threadDictionary.TryAdd(ThreadId, new Stack<(Methods, Stopwatch)>()))
