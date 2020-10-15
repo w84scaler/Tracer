@@ -16,7 +16,10 @@ namespace lab1
             Bar _bar = new Bar(tracer);
             AnotherClass _anotherObject = new AnotherClass(tracer);
 
+            tracer.StartTrace();
             _anotherObject.AnotherMethod();
+            _bar.InnerMethod();
+            tracer.StopTrace();
 
             Thread secondThread = new Thread(new ThreadStart(_foo.MyMethod));
             secondThread.Start();

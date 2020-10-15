@@ -46,13 +46,12 @@ namespace Tracer
 
             if (threadDictionary[ThreadId].Count != 0)
             {
-                (Methods PreMethod, Stopwatch preStopwatch) = threadDictionary[ThreadId].Pop();
+                (Methods PreMethod, Stopwatch preStopwatch) = threadDictionary[ThreadId].Peek();
                 if (PreMethod.Methods == null)
                 {
                     PreMethod.Methods = new List<Methods>();
                 }
                 PreMethod.Methods.Add(ThisMethod);
-                threadDictionary[ThreadId].Push((PreMethod, preStopwatch));
             }
             else
             {
